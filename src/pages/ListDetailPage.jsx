@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import useUserStore from '../../store/userStore';
+import useUserStore from '../store/userStore';
 import { mockBooks } from '../lib/mockData';
 import BookList from '../../components/organisms/BookList';
 
