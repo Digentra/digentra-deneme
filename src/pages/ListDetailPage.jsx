@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import useUserStore from '../store/userStore';
 import { mockBooks } from '../lib/mockData';
-import BookList from '../../components/organisms/BookList';
+import BookList from '../components/organisms/BookList';
 
 export default function ListDetailPage() {
   const { listId } = useParams();
