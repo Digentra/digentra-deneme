@@ -1,39 +1,22 @@
-import React from "react";
+import { Link } from 'react-router-dom';
 
-const CourseCard = ({ course }) => {
+export default function BookCard({ book }) {
+  // Guard clause to prevent rendering if book is undefined
+  if (!book) {
+    return null; 
+  }
+
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-      <img
-        className="w-full h-56 object-cover object-center"
-        src={course.image}
-        alt={course.title}
-      />
-      <div className="p-6">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-2">
-          {course.title}
-        </h3>
-        <p className="text-gray-600 mb-4">{course.description}</p>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <img
-              className="w-10 h-10 rounded-full mr-4"
-              src={course.instructor.avatar}
-              alt={course.instructor.name}
-            />
-            <div className="text-sm">
-              <p className="text-gray-900 leading-none">
-                {course.instructor.name}
-              </p>
-              <p className="text-gray-600">{course.instructor.role}</p>
-            </div>
-          </div>
-          <div className="text-orange-500 font-bold text-xl">
-            {course.price}
-          </div>
-        </div>
+    <Link to={`/book/${book.id}`} className="group">
+      <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+        <img
+          src={book.coverImage}
+          alt={`Cover of ${book.title}`}
+          className="w-full h-full object-center object-cover group-hover:opacity-75"
+        />
       </div>
-    </div>
+      <h3 className="mt-4 text-sm text-gray-700 dark:text-gray-200">{book.title}</h3>
+      <p className="mt-1 text-lg font-medium text-gray-900 dark:text-white">{book.author}</p>
+    </Link>
   );
-};
-
-export default CourseCard;
+}
