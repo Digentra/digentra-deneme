@@ -31,7 +31,7 @@ export default function RegisterPage() {
     <div className="flex items-center justify-center">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
             Create a new account
           </h2>
         </div>
@@ -66,13 +66,13 @@ export default function RegisterPage() {
             {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
           </div>
           <div>
-            <Button type="submit" disabled={isLoading}>
+            <Button type="submit" disabled={isLoading} className="w-full">
               {isLoading ? 'Creating account...' : 'Sign up'}
             </Button>
           </div>
         </form>
         <div className="text-sm text-center">
-          <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+          <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
             Already have an account? Sign in
           </Link>
         </div>
