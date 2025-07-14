@@ -12,3 +12,22 @@
     @apply bg-dark text-text-dark;
   }
 }
+
+@layer components {
+  .swiper-button-next,
+  .swiper-button-prev {
+    @apply bg-white dark:bg-gray-800 rounded-full shadow-md w-12 h-12;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    @apply text-primary dark:text-white text-xl font-extrabold;
+  }
+  .swiper-button-prev {
+    left: -10px;
+  }
+  .swiper-button-next {
+    right: -10px;
+  }
+}

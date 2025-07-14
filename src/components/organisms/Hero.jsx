@@ -3,7 +3,7 @@ import { mockBooks } from '../../lib/mockData';
 import Button from '../atoms/Button';
 
 export default function Hero() {
-  const heroBooks = mockBooks.slice(-5).reverse(); // Use last 5 books for the collage
+  const heroBooks = mockBooks.slice(0, 5);
 
   return (
     <div className="bg-light dark:bg-dark py-16 sm:py-24">

@@ -3,9 +3,9 @@ import Hero from '../components/organisms/Hero';
 import { mockBooks } from '../lib/mockData';
 
 export default function HomePage() {
-  // Ensure distinct lists
-  const editorsPicks = mockBooks.slice(0, 6);
-  const popularBooks = mockBooks.slice(6, 12);
+  // Ensure distinct and non-overlapping lists
+  const editorsPicks = mockBooks.slice(0, 8);
+  const popularBooks = mockBooks.slice(8, 16);
 
   return (
     <>
