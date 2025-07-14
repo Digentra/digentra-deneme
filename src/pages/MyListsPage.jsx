@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import useUserStore from '../../store/userStore';
-import Button from '../../components/atoms/Button';
+import useUserStore from '../store/userStore';
+import Button from '../components/atoms/Button';
 
 export default function MyListsPage() {
   const { myLists } = useUserStore();

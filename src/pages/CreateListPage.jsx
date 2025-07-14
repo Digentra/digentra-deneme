@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import useUserStore from '../../store/userStore';
-import Button from '../../components/atoms/Button';
-import Input from '../../components/atoms/Input';
-import Label from '../../components/atoms/Label';
-import { mockBooks } from '../../lib/mockData';
+import useUserStore from '../store/userStore';
+import Button from '../components/atoms/Button';
+import Input from '../components/atoms/Input';
+import Label from '../components/atoms/Label';
+import { mockBooks } from '../lib/mockData';
 
 export default function CreateListPage() {
   const { register, handleSubmit, formState: { errors } } = useForm();

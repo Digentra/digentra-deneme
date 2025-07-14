@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
-import useUserStore from '../../store/userStore';
-import { mockBooks } from '../../lib/mockData'; // Assuming users are associated with books for now
-import BookList from '../../components/organisms/BookList';
-import Button from '../../components/atoms/Button';
+import useUserStore from '../store/userStore';
+import { mockBooks } from '../lib/mockData'; // Assuming users are associated with books for now
+import BookList from '../components/organisms/BookList';
+import Button from '../components/atoms/Button';
 
 // Mock user data for demonstration
 const mockUsers = {
