@@ -34,7 +34,7 @@ export default function BookDetailPage() {
 
   return (
     <div className="container mx-auto px-6 py-8">
-      <div className="grid md:grid-cols-12 gap-8 lg:gap-12">
+      <div className="grid md:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left Column: Cover Image & Library Button */}
         <div className="md:col-span-4 lg:col-span-3">
           <img src={book.coverImage} alt={`Cover of ${book.title}`} className="w-full rounded-lg shadow-2xl aspect-w-3 aspect-h-4 object-cover" />
