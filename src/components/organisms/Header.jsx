@@ -42,14 +42,19 @@ export default function Header() {
         <div className="flex items-center space-x-4">
           <ThemeToggle />
           {isAuthenticated ? (
-            <div className="relative">
+            <div className="flex items-center space-x-4">
               <button onClick={() => navigate('/profile')} className="flex items-center space-x-2">
                 <span className="font-semibold font-body">Hi, {user?.name}</span>
                 <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">
                   {user?.name?.charAt(0).toUpperCase()}
                 </div>
               </button>
-              {/* Dropdown can be added here */}
+              <button
+                onClick={handleLogout}
+                className="font-body font-semibold px-4 py-2 rounded-full text-sm text-red-600 border border-red-600 hover:bg-red-600 hover:text-white transition-all duration-300"
+              >
+                Logout
+              </button>
             </div>
           ) : (
             <div className="hidden md:flex items-center space-x-2">
