@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
 import useUserStore from '../store/userStore';
-import Button from '../atoms/Button';
-import Input from '../atoms/Input';
-import Label from '../atoms/Label';
+import Button from '../components/atoms/Button';
+import Input from '../components/atoms/Input';
+import Label from '../components/atoms/Label';
 
 export default function PersonalInfoPage() {
   const { user, setUser } = useUserStore();

@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
-import Button from '../atoms/Button';
-import Input from '../atoms/Input';
-import Label from '../atoms/Label';
+import Button from '../components/atoms/Button';
+import Input from '../components/atoms/Input';
+import Label from '../components/atoms/Label';
 
 export default function LoginSecurityPage() {
   const { register, handleSubmit, formState: { errors }, watch } = useForm();
