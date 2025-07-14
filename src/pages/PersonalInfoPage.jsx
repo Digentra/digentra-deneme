@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import useUserStore from '../../store/userStore';
+import useUserStore from '../store/userStore';
 import Button from '../atoms/Button';
 import Input from '../atoms/Input';
 import Label from '../atoms/Label';

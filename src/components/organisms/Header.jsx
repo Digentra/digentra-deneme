@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import useUserStore from '../../store/userStore';
+import useUserStore from '../store/userStore';
 import ThemeToggle from '../atoms/ThemeToggle';
 import Search from '../atoms/Search';
 
