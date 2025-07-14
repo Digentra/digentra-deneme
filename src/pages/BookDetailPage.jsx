@@ -7,6 +7,7 @@ import CommentList from '../components/molecules/CommentList';
 import CommentForm from '../components/molecules/CommentForm';
 import { useState, useMemo } from 'react';
 import BookCarousel from '../components/organisms/BookCarousel';
+import toast from 'react-hot-toast';
 
 const StarIcon = ({ className }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -32,6 +33,11 @@ export default function BookDetailPage() {
   const handleToggleLibrary = () => {
     if (book) {
       toggleBookInLibrary(book.id);
+      if (!isBookInLibrary) {
+        toast.success(`${book.title} added to your library!`);
+      } else {
+        toast.error(`${book.title} removed from your library.`);
+      }
     }
   };
 
@@ -44,6 +50,7 @@ export default function BookDetailPage() {
       date: new Date().toISOString(),
     };
     setComments([newComment, ...comments]);
+    toast.success('Review submitted!');
   };
 
   if (!book) {

@@ -3,6 +3,7 @@ import useUserStore from '../store/userStore';
 import Button from '../components/atoms/Button';
 import Input from '../components/atoms/Input';
 import Label from '../components/atoms/Label';
+import toast from 'react-hot-toast';
 
 export default function PersonalInfoPage() {
   const { user, setUser } = useUserStore();
@@ -16,7 +17,7 @@ export default function PersonalInfoPage() {
   const onSubmit = (data) => {
     // In a real app, you'd call an API to update the user info
     setUser({ ...user, ...data });
-    alert('Profile updated successfully!');
+    toast.success('Profile updated successfully!');
   };
 
   return (

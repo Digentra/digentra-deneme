@@ -5,6 +5,7 @@ const profileLinks = [
   { name: 'Login & Security', path: '/profile/login-security' },
   { name: 'My Payments', path: '/profile/payments' },
   { name: 'My Orders', path: '/profile/orders' },
+  { name: 'My Lists', path: '/profile/my-lists' },
 ];
 
 export default function ProfileSidebar() {

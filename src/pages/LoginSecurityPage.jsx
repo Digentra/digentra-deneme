@@ -2,15 +2,17 @@ import { useForm } from 'react-hook-form';
 import Button from '../components/atoms/Button';
 import Input from '../components/atoms/Input';
 import Label from '../components/atoms/Label';
+import toast from 'react-hot-toast';
 
 export default function LoginSecurityPage() {
-  const { register, handleSubmit, formState: { errors }, watch } = useForm();
+  const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
   const newPassword = watch('newPassword');
 
   const onSubmit = (data) => {
     // In a real app, you'd call an API to change the password
     console.log(data);
-    alert('Password updated successfully!');
+    toast.success('Password updated successfully!');
+    reset();
   };
 
   return (
