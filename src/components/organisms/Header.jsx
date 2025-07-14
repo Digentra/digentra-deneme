@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
 import useUserStore from '../../store/userStore';
-import Button from '../atoms/Button';
 
 export default function Header() {
   const { isAuthenticated, user, logout } = useUserStore();
@@ -11,31 +10,55 @@ export default function Header() {
     navigate('/');
   };
 
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Courses', path: '/courses' }, // Assuming a courses page
+    { name: 'Library', path: '/library' },
+    { name: 'About Us', path: '/about' },
+  ];
+
   return (
-    <header className="bg-white dark:bg-gray-800 shadow-md">
-      <nav className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+    <header className="bg-light dark:bg-dark shadow-sm sticky top-0 z-50">
+      <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <Link to="/" className="text-3xl font-bold font-heading text-primary-dark dark:text-primary">
           Digentra
         </Link>
+        
+        <div className="hidden md:flex items-center space-x-8">
+          {navLinks.map(link => (
+            <Link key={link.name} to={link.path} className="font-body font-semibold text-text-light dark:text-text-dark hover:text-primary transition-colors duration-300">
+              {link.name}
+            </Link>
+          ))}
+        </div>
+
         <div className="flex items-center space-x-4">
           {isAuthenticated ? (
-            <>
-              <span className="text-gray-800 dark:text-gray-200">Welcome, {user?.name}!</span>
-              <Link to="/library" className="text-gray-600 dark:text-gray-300 hover:text-indigo-600">My Library</Link>
-              <Button onClick={handleLogout} className="!w-auto !py-1.5 !px-3">
-                Logout
-              </Button>
-            </>
+            <div className="relative">
+              <button onClick={() => navigate('/profile')} className="flex items-center space-x-2">
+                <span className="font-semibold font-body">Hi, {user?.name}</span>
+                <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">
+                  {user?.name?.charAt(0).toUpperCase()}
+                </div>
+              </button>
+              {/* Dropdown can be added here */}
+            </div>
           ) : (
-            <>
-              <Link to="/login" className="text-gray-600 dark:text-gray-300 hover:text-indigo-600">
-                Sign In
+            <div className="hidden md:flex items-center space-x-2">
+              <Link to="/login" className="font-body font-semibold px-6 py-2 rounded-full text-primary border border-primary hover:bg-primary hover:text-white transition-all duration-300">
+                Login
               </Link>
-              <Link to="/register" className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+              <Link to="/register" className="font-body font-semibold px-6 py-2 rounded-full bg-primary text-white hover:bg-opacity-90 transition-all duration-300">
                 Sign Up
               </Link>
-            </>
+            </div>
           )}
+           {/* Mobile Menu Button */}
+           <div className="md:hidden">
+              <button>
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" /></svg>
+              </button>
+           </div>
         </div>
       </nav>
     </header>
