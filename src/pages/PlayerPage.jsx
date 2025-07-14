@@ -2,18 +2,16 @@ import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { mockBooks } from '../lib/mockData';
 
+// Inlined SVGs to remove external dependencies and fix build errors.
 const PlayIcon = (props) => (
   <svg {...props} viewBox="0 0 24 24" fill="currentColor"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8.168v7.664a1 1 0 001.555.832l5.598-3.832a1 1 0 000-1.664l-5.598-3.832z" /></svg>
 );
-
 const PauseIcon = (props) => (
   <svg {...props} viewBox="0 0 24 24" fill="currentColor"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v8a1 1 0 001 1h1a1 1 0 001-1V8a1 1 0 00-1-1H8zm5 0a1 1 0 00-1 1v8a1 1 0 001 1h1a1 1 0 001-1V8a1 1 0 00-1-1h-1z" /></svg>
 );
-
 const BackwardIcon = (props) => (
   <svg {...props} fill="currentColor" viewBox="0 0 24 24"><path d="M10 18.5a.5.5 0 01-.854.354l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.854.354v12zM18 18.5a.5.5 0 01-.854.354l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.854.354v12z" /></svg>
 );
-
 const ForwardIcon = (props) => (
   <svg {...props} fill="currentColor" viewBox="0 0 24 24"><path d="M6 5.5a.5.5 0 01.854-.354l6 6a.5.5 0 010 .708l-6 6A.5.5 0 016 17.5v-12zm8 0a.5.5 0 01.854-.354l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.854-.354v-12z" /></svg>
 );
@@ -61,7 +59,7 @@ export default function PlayerPage() {
           </div>
         </div>
 
-        <div className="flex items-center justify-center space-x-10">
+        <div className="flex items-center justify-center space-x-12">
           <button className="text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors">
             <BackwardIcon className="w-10 h-10" />
           </button>
