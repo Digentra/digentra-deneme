@@ -21,6 +21,7 @@ import FAQPage from './pages/FAQPage';
 import SubscriptionPage from './pages/SubscriptionPage';
 import CheckoutPage from './pages/CheckoutPage';
 import OrderConfirmationPage from './pages/OrderConfirmationPage';
+import AuthorDetailPage from './pages/AuthorDetailPage';
 import Header from './components/organisms/Header';
 import Footer from './components/organisms/Footer';
 import useThemeStore from './store/themeStore';
@@ -47,6 +48,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/library" element={<LibraryPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/author/:authorName" element={<AuthorDetailPage />} />
           <Route path="/profile" element={<ProfilePage />}>
             <Route path="personal-info" element={<PersonalInfoPage />} />
             <Route path="login-security" element={<LoginSecurityPage />} />

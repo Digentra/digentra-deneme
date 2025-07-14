@@ -5,7 +5,8 @@ import LanguageFormatSelector from '../components/molecules/LanguageFormatSelect
 import useUserStore from '../store/userStore';
 import CommentList from '../components/molecules/CommentList';
 import CommentForm from '../components/molecules/CommentForm';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import BookCarousel from '../components/organisms/BookCarousel';
 
 const StarIcon = ({ className }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -20,6 +21,13 @@ export default function BookDetailPage() {
 
   const { isAuthenticated, user, library, toggleBookInLibrary } = useUserStore();
   const isBookInLibrary = book ? library.includes(book.id) : false;
+
+  const similarBooks = useMemo(() => {
+    if (!book) return [];
+    return mockBooks.filter(
+      (b) => b.genre === book.genre && b.id !== book.id
+    ).slice(0, 8);
+  }, [book]);
 
   const handleToggleLibrary = () => {
     if (book) {
@@ -69,7 +77,9 @@ export default function BookDetailPage() {
         {/* Right Column: Book Details */}
         <div className="md:col-span-8 lg:col-span-9">
           <h1 className="font-heading text-4xl lg:text-5xl font-bold text-primary-dark dark:text-white">{book.title}</h1>
-          <p className="font-body text-xl text-text-muted-light dark:text-text-muted-dark mt-2">by {book.author}</p>
+          <p className="font-body text-xl text-text-muted-light dark:text-text-muted-dark mt-2">
+            by <Link to={`/author/${book.author}`} className="hover:underline text-primary-dark dark:text-indigo-400">{book.author}</Link>
+          </p>
           
           <div className="flex items-center my-4">
             {[...Array(5)].map((_, i) => (
@@ -98,12 +108,27 @@ export default function BookDetailPage() {
             </p>
           </div>
 
+          <div className="mt-12">
+            <h2 className="font-heading text-2xl font-bold border-b border-border-light dark:border-border-dark pb-2 mb-4">Details</h2>
+            <div className="grid grid-cols-2 gap-4 text-text-muted-light dark:text-text-muted-dark">
+              <div><span className="font-semibold text-text-light dark:text-text-dark">Publisher:</span> {book.publisher}</div>
+              <div><span className="font-semibold text-text-light dark:text-text-dark">Pages:</span> {book.pages}</div>
+              <div><span className="font-semibold text-text-light dark:text-text-dark">Audiobook Length:</span> {book.duration}</div>
+            </div>
+          </div>
+
           <div className="mt-12 space-y-8">
             {isAuthenticated && <CommentForm onSubmit={handleCommentSubmit} />}
             <CommentList comments={comments} />
           </div>
         </div>
       </div>
+      
+      {similarBooks.length > 0 && (
+        <div className="mt-20">
+          <BookCarousel title="You Might Also Like" books={similarBooks} />
+        </div>
+      )}
     </div>
   );
 }

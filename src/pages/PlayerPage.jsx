@@ -2,19 +2,14 @@ import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { mockBooks } from '../lib/mockData';
 
-// Inlined SVGs to remove external dependencies and fix build errors.
-const PlayIcon = (props) => (
-  <svg {...props} viewBox="0 0 24 24" fill="currentColor"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8.168v7.664a1 1 0 001.555.832l5.598-3.832a1 1 0 000-1.664l-5.598-3.832z" /></svg>
-);
-const PauseIcon = (props) => (
-  <svg {...props} viewBox="0 0 24 24" fill="currentColor"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v8a1 1 0 001 1h1a1 1 0 001-1V8a1 1 0 00-1-1H8zm5 0a1 1 0 00-1 1v8a1 1 0 001 1h1a1 1 0 001-1V8a1 1 0 00-1-1h-1z" /></svg>
-);
-const BackwardIcon = (props) => (
-  <svg {...props} fill="currentColor" viewBox="0 0 24 24"><path d="M10 18.5a.5.5 0 01-.854.354l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.854.354v12zM18 18.5a.5.5 0 01-.854.354l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.854.354v12z" /></svg>
-);
-const ForwardIcon = (props) => (
-  <svg {...props} fill="currentColor" viewBox="0 0 24 24"><path d="M6 5.5a.5.5 0 01.854-.354l6 6a.5.5 0 010 .708l-6 6A.5.5 0 016 17.5v-12zm8 0a.5.5 0 01.854-.354l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.854-.354v-12z" /></svg>
-);
+// Inlined SVGs
+const PlayIcon = (props) => <svg {...props} viewBox="0 0 24 24" fill="currentColor"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8.168v7.664a1 1 0 001.555.832l5.598-3.832a1 1 0 000-1.664l-5.598-3.832z" /></svg>;
+const PauseIcon = (props) => <svg {...props} viewBox="0 0 24 24" fill="currentColor"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v8a1 1 0 001 1h1a1 1 0 001-1V8a1 1 0 00-1-1H8zm5 0a1 1 0 00-1 1v8a1 1 0 001 1h1a1 1 0 001-1V8a1 1 0 00-1-1h-1z" /></svg>;
+const BackwardIcon = (props) => <svg {...props} fill="currentColor" viewBox="0 0 24 24"><path d="M10 18.5a.5.5 0 01-.854.354l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.854.354v12zM18 18.5a.5.5 0 01-.854.354l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.854.354v12z" /></svg>;
+const ForwardIcon = (props) => <svg {...props} fill="currentColor" viewBox="0 0 24 24"><path d="M6 5.5a.5.5 0 01.854-.354l6 6a.5.5 0 010 .708l-6 6A.5.5 0 016 17.5v-12zm8 0a.5.5 0 01.854-.354l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.854-.354v-12z" /></svg>;
+const MoonIcon = (props) => <svg {...props} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>;
+const ListIcon = (props) => <svg {...props} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg>;
+
 
 export default function PlayerPage() {
   const { id } = useParams();
@@ -71,6 +66,17 @@ export default function PlayerPage() {
           <button className="text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors">
             <ForwardIcon className="w-10 h-10" />
           </button>
+        </div>
+
+        <div className="flex items-center justify-around mt-8 text-text-muted-light dark:text-text-muted-dark">
+            <button className="hover:text-primary transition-colors flex flex-col items-center">
+                <MoonIcon className="w-6 h-6"/>
+                <span className="text-xs mt-1">Sleep Timer</span>
+            </button>
+            <button className="hover:text-primary transition-colors flex flex-col items-center">
+                <ListIcon className="w-6 h-6"/>
+                <span className="text-xs mt-1">Chapters</span>
+            </button>
         </div>
       </div>
     </div>
