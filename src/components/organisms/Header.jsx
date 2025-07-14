@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import useUserStore from '../../store/userStore';
+import ThemeToggle from '../atoms/ThemeToggle';
 
 export default function Header() {
   const { isAuthenticated, user, logout } = useUserStore();
@@ -33,6 +34,7 @@ export default function Header() {
         </div>
 
         <div className="flex items-center space-x-4">
+          <ThemeToggle />
           {isAuthenticated ? (
             <div className="relative">
               <button onClick={() => navigate('/profile')} className="flex items-center space-x-2">

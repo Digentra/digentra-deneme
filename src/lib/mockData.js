@@ -32,9 +32,9 @@ export const mockBooks = [
     title: 'The Four Winds',
     author: 'Kristin Hannah',
     rating: 4.6,
-    coverImage: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1592859681l/53138081.jpg',
+    coverImage: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1600625492l/53138081.jpg', // Corrected URL
   },
-    {
+  {
     id: 6,
     title: 'Atomic Habits',
     author: 'James Clear',
@@ -54,5 +54,19 @@ export const mockBooks = [
     author: 'Madeline Miller',
     rating: 4.7,
     coverImage: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1565909829l/35959740._SY475_.jpg',
+  },
+  {
+    id: 9,
+    title: 'The Silent Patient',
+    author: 'Alex Michaelides',
+    rating: 4.6,
+    coverImage: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1546103761l/40097951.jpg',
+  },
+  {
+    id: 10,
+    title: 'Where the Crawdads Sing',
+    author: 'Delia Owens',
+    rating: 4.8,
+    coverImage: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524102644l/36809135.jpg',
   }
 ];

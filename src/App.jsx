@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import BookDetailPage from './pages/BookDetailPage';
@@ -8,12 +9,21 @@ import ReaderPage from './pages/ReaderPage';
 import PlayerPage from './pages/PlayerPage';
 import Header from './components/organisms/Header';
 import Footer from './components/organisms/Footer';
+import useThemeStore from './store/themeStore';
 
 function App() {
+  const theme = useThemeStore((state) => state.theme);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove('light', 'dark');
+    root.classList.add(theme);
+  }, [theme]);
+
   return (
-    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div className="flex flex-col min-h-screen bg-light dark:bg-dark text-text-light dark:text-dark transition-colors duration-300">
       <Header />
-      <main className="flex-grow container mx-auto px-4 py-8">
+      <main className="flex-grow">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/book/:id" element={<BookDetailPage />} />

@@ -5,7 +5,7 @@ import { mockBooks } from '../lib/mockData';
 export default function HomePage() {
   // Simple logic to divide books into different lists
   const editorsPicks = mockBooks.slice(0, 4);
-  const popularBooks = mockBooks.slice(4, 8);
+  const popularBooks = mockBooks.slice(4, 10);
 
   return (
     <>
