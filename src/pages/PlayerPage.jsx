@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { mockBooks } from '../lib/mockData';
 
@@ -10,30 +10,55 @@ const ForwardIcon = (props) => <svg {...props} fill="currentColor" viewBox="0 0 
 const MoonIcon = (props) => <svg {...props} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>;
 const ListIcon = (props) => <svg {...props} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg>;
 
-
 export default function PlayerPage() {
   const { id } = useParams();
   const [isPlaying, setIsPlaying] = useState(true);
-  const [progress, setProgress] = useState(45); // Percentage
+  const [progress, setProgress] = useState(45);
+  const timelineRef = useRef(null);
+  const isDragging = useRef(false);
   const book = mockBooks.find((b) => b.id === parseInt(id));
+
+  const handleProgressUpdate = (e) => {
+    if (!timelineRef.current) return;
+    const rect = timelineRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const newProgress = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    setProgress(newProgress);
+  };
+
+  const handleMouseDown = (e) => {
+    isDragging.current = true;
+    handleProgressUpdate(e);
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging.current) {
+      handleProgressUpdate(e);
+    }
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+  };
+
+  useEffect(() => {
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []);
 
   if (!book) {
     return <div>Book not found!</div>;
   }
 
-  const handleTimelineClick = (e) => {
-    const timeline = e.currentTarget;
-    const rect = timeline.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const newProgress = (clickX / rect.width) * 100;
-    setProgress(newProgress);
-  };
-
   return (
     <div className="min-h-screen bg-light dark:bg-dark flex flex-col items-center justify-center p-4">
-       <Link to={`/book/${id}`} className="absolute top-6 left-6 font-body text-primary hover:underline z-10">
-            &larr; Back to Details
-        </Link>
+      <Link to={`/book/${id}`} className="absolute top-6 left-6 font-body text-primary hover:underline z-10">
+        &larr; Back to Details
+      </Link>
       <div className="w-full max-w-md">
         <div className="aspect-w-1 aspect-h-1 mb-8">
           <img src={book.coverImage} alt={`Cover of ${book.title}`} className="w-full h-full object-cover rounded-2xl shadow-2xl" />
@@ -45,8 +70,16 @@ export default function PlayerPage() {
         </div>
 
         <div className="my-8">
-          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 cursor-pointer" onClick={handleTimelineClick}>
+          <div 
+            ref={timelineRef}
+            className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 cursor-pointer relative" 
+            onMouseDown={handleMouseDown}
+          >
             <div className="bg-primary h-2 rounded-full" style={{ width: `${progress}%` }}></div>
+            <div 
+              className="absolute w-4 h-4 bg-primary rounded-full -translate-y-1/2 top-1/2"
+              style={{ left: `calc(${progress}% - 8px)` }}
+            ></div>
           </div>
           <div className="flex justify-between text-xs font-body text-text-muted-light dark:text-text-muted-dark mt-2">
             <span>1:35:20</span>

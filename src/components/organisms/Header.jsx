@@ -43,13 +43,13 @@ export default function Header() {
         </div>
 
         <div className="flex items-center space-x-4">
-          import { useState } from 'react';
+          import { useState, Fragment } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useUserStore from '../../store/userStore';
 import ThemeToggle from '../atoms/ThemeToggle';
 import Search from '../atoms/Search';
 import { Menu, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const { isAuthenticated, user, logout } = useUserStore();
@@ -161,37 +161,44 @@ export default function Header() {
         </div>
       </nav>
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-light dark:bg-dark">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navLinks.map(link => (
-              <Link key={link.name} to={link.path} onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700">
-                {link.name}
-              </Link>
-            ))}
-            <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
-              {isAuthenticated ? (
-                <div className="px-2 space-y-1">
-                   <button onClick={() => {navigate('/profile'); setIsMobileMenuOpen(false);}} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700">
-                    Your Profile
-                  </button>
-                  <button
-                    onClick={handleLogout}
-                    className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-gray-200 dark:hover:bg-gray-700"
-                  >
-                    Logout
-                  </button>
-                </div>
-              ) : (
-                <div className="px-2 space-y-1">
-                  <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700">Login</Link>
-                  <Link to="/register" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700">Sign Up</Link>
-                </div>
-              )}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden bg-light dark:bg-dark"
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              {navLinks.map(link => (
+                <Link key={link.name} to={link.path} onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700">
+                  {link.name}
+                </Link>
+              ))}
+              <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
+                {isAuthenticated ? (
+                  <div className="px-2 space-y-1">
+                     <button onClick={() => {navigate('/profile'); setIsMobileMenuOpen(false);}} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700">
+                      Your Profile
+                    </button>
+                    <button
+                      onClick={handleLogout}
+                      className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                ) : (
+                  <div className="px-2 space-y-1">
+                    <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700">Login</Link>
+                    <Link to="/register" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700">Sign Up</Link>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
