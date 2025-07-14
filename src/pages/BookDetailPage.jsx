@@ -37,16 +37,18 @@ export default function BookDetailPage() {
       <div className="grid md:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left Column: Cover Image & Library Button */}
         <div className="md:col-span-4 lg:col-span-3">
-          <img src={book.coverImage} alt={`Cover of ${book.title}`} className="w-full rounded-lg shadow-2xl aspect-w-3 aspect-h-4 object-cover" />
-          {isAuthenticated && (
-            <Button
-              onClick={handleToggleLibrary}
-              className="w-full mt-6 text-lg"
-              variant={isBookInLibrary ? 'secondary' : 'primary'}
-            >
-              {isBookInLibrary ? '✓ In Your Library' : '+ Add to Library'}
-            </Button>
-          )}
+          <div className="sticky top-28">
+            <img src={book.coverImage} alt={`Cover of ${book.title}`} className="w-full rounded-lg shadow-2xl aspect-w-3 aspect-h-4 object-cover" />
+            {isAuthenticated && (
+              <Button
+                onClick={handleToggleLibrary}
+                className="w-full mt-6 text-lg"
+                variant={isBookInLibrary ? 'secondary' : 'primary'}
+              >
+                {isBookInLibrary ? '✓ In Your Library' : '+ Add to Library'}
+              </Button>
+            )}
+          </div>
         </div>
 
         {/* Right Column: Book Details */}

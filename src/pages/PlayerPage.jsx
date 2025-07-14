@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { mockBooks } from '../lib/mockData';
 
-// Inlined SVGs to remove external dependencies and fix build errors.
 const PlayIcon = (props) => (
   <svg {...props} viewBox="0 0 24 24" fill="currentColor"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8.168v7.664a1 1 0 001.555.832l5.598-3.832a1 1 0 000-1.664l-5.598-3.832z" /></svg>
 );
@@ -19,7 +18,7 @@ const ForwardIcon = (props) => (
 export default function PlayerPage() {
   const { id } = useParams();
   const [isPlaying, setIsPlaying] = useState(true);
-  const [progress, setProgress] = useState(45); // Percentage
+  const [progress, setProgress] = useState(45);
   const book = mockBooks.find((b) => b.id === parseInt(id));
 
   if (!book) {
@@ -59,7 +58,7 @@ export default function PlayerPage() {
           </div>
         </div>
 
-        <div className="flex items-center justify-center space-x-12">
+        <div className="flex items-center justify-center space-x-10">
           <button className="text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors">
             <BackwardIcon className="w-10 h-10" />
           </button>
