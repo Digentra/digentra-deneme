@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import useUserStore from '../../store/userStore';
 import ThemeToggle from '../atoms/ThemeToggle';
+import Search from '../atoms/Search';
 
 export default function Header() {
   const { isAuthenticated, user, logout } = useUserStore();
@@ -13,9 +14,10 @@ export default function Header() {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Courses', path: '/courses' }, // Assuming a courses page
     { name: 'Library', path: '/library' },
     { name: 'About Us', path: '/about' },
+    { name: 'FAQ', path: '/faq' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   return (
@@ -31,6 +33,10 @@ export default function Header() {
               {link.name}
             </Link>
           ))}
+        </div>
+
+        <div className="flex-1 max-w-lg mx-4">
+          <Search />
         </div>
 
         <div className="flex items-center space-x-4">

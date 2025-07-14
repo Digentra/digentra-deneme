@@ -20,7 +20,7 @@ export default function RegisterPage() {
 
     if (response.success) {
       login(response.user, response.token);
-      navigate('/');
+      navigate('/onboarding');
     } else {
       // In a real app, you would handle registration errors here.
       console.error("Registration failed:", response.message);
